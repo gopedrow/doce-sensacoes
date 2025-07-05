@@ -1,223 +1,274 @@
-"use strict";
+'use strict';
 
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-var _toDate = _interopRequireDefault(require("./lib/toDate"));
-var _toFloat = _interopRequireDefault(require("./lib/toFloat"));
-var _toInt = _interopRequireDefault(require("./lib/toInt"));
-var _toBoolean = _interopRequireDefault(require("./lib/toBoolean"));
-var _equals = _interopRequireDefault(require("./lib/equals"));
-var _contains = _interopRequireDefault(require("./lib/contains"));
-var _matches = _interopRequireDefault(require("./lib/matches"));
-var _isEmail = _interopRequireDefault(require("./lib/isEmail"));
-var _isURL = _interopRequireDefault(require("./lib/isURL"));
-var _isMACAddress = _interopRequireDefault(require("./lib/isMACAddress"));
-var _isIP = _interopRequireDefault(require("./lib/isIP"));
-var _isIPRange = _interopRequireDefault(require("./lib/isIPRange"));
-var _isFQDN = _interopRequireDefault(require("./lib/isFQDN"));
-var _isDate = _interopRequireDefault(require("./lib/isDate"));
-var _isTime = _interopRequireDefault(require("./lib/isTime"));
-var _isBoolean = _interopRequireDefault(require("./lib/isBoolean"));
-var _isLocale = _interopRequireDefault(require("./lib/isLocale"));
-var _isAbaRouting = _interopRequireDefault(require("./lib/isAbaRouting"));
-var _isAlpha = _interopRequireWildcard(require("./lib/isAlpha"));
-var _isAlphanumeric = _interopRequireWildcard(require("./lib/isAlphanumeric"));
-var _isNumeric = _interopRequireDefault(require("./lib/isNumeric"));
-var _isPassportNumber = _interopRequireDefault(require("./lib/isPassportNumber"));
-var _isPort = _interopRequireDefault(require("./lib/isPort"));
-var _isLowercase = _interopRequireDefault(require("./lib/isLowercase"));
-var _isUppercase = _interopRequireDefault(require("./lib/isUppercase"));
-var _isIMEI = _interopRequireDefault(require("./lib/isIMEI"));
-var _isAscii = _interopRequireDefault(require("./lib/isAscii"));
-var _isFullWidth = _interopRequireDefault(require("./lib/isFullWidth"));
-var _isHalfWidth = _interopRequireDefault(require("./lib/isHalfWidth"));
-var _isVariableWidth = _interopRequireDefault(require("./lib/isVariableWidth"));
-var _isMultibyte = _interopRequireDefault(require("./lib/isMultibyte"));
-var _isSemVer = _interopRequireDefault(require("./lib/isSemVer"));
-var _isSurrogatePair = _interopRequireDefault(require("./lib/isSurrogatePair"));
-var _isInt = _interopRequireDefault(require("./lib/isInt"));
-var _isFloat = _interopRequireWildcard(require("./lib/isFloat"));
-var _isDecimal = _interopRequireDefault(require("./lib/isDecimal"));
-var _isHexadecimal = _interopRequireDefault(require("./lib/isHexadecimal"));
-var _isOctal = _interopRequireDefault(require("./lib/isOctal"));
-var _isDivisibleBy = _interopRequireDefault(require("./lib/isDivisibleBy"));
-var _isHexColor = _interopRequireDefault(require("./lib/isHexColor"));
-var _isRgbColor = _interopRequireDefault(require("./lib/isRgbColor"));
-var _isHSL = _interopRequireDefault(require("./lib/isHSL"));
-var _isISRC = _interopRequireDefault(require("./lib/isISRC"));
-var _isIBAN = _interopRequireWildcard(require("./lib/isIBAN"));
-var _isBIC = _interopRequireDefault(require("./lib/isBIC"));
-var _isMD = _interopRequireDefault(require("./lib/isMD5"));
-var _isHash = _interopRequireDefault(require("./lib/isHash"));
-var _isJWT = _interopRequireDefault(require("./lib/isJWT"));
-var _isJSON = _interopRequireDefault(require("./lib/isJSON"));
-var _isEmpty = _interopRequireDefault(require("./lib/isEmpty"));
-var _isLength = _interopRequireDefault(require("./lib/isLength"));
-var _isByteLength = _interopRequireDefault(require("./lib/isByteLength"));
-var _isUUID = _interopRequireDefault(require("./lib/isUUID"));
-var _isMongoId = _interopRequireDefault(require("./lib/isMongoId"));
-var _isAfter = _interopRequireDefault(require("./lib/isAfter"));
-var _isBefore = _interopRequireDefault(require("./lib/isBefore"));
-var _isIn = _interopRequireDefault(require("./lib/isIn"));
-var _isLuhnNumber = _interopRequireDefault(require("./lib/isLuhnNumber"));
-var _isCreditCard = _interopRequireDefault(require("./lib/isCreditCard"));
-var _isIdentityCard = _interopRequireDefault(require("./lib/isIdentityCard"));
-var _isEAN = _interopRequireDefault(require("./lib/isEAN"));
-var _isISIN = _interopRequireDefault(require("./lib/isISIN"));
-var _isISBN = _interopRequireDefault(require("./lib/isISBN"));
-var _isISSN = _interopRequireDefault(require("./lib/isISSN"));
-var _isTaxID = _interopRequireDefault(require("./lib/isTaxID"));
-var _isMobilePhone = _interopRequireWildcard(require("./lib/isMobilePhone"));
-var _isEthereumAddress = _interopRequireDefault(require("./lib/isEthereumAddress"));
-var _isCurrency = _interopRequireDefault(require("./lib/isCurrency"));
-var _isBtcAddress = _interopRequireDefault(require("./lib/isBtcAddress"));
-var _isISO = require("./lib/isISO6346");
-var _isISO2 = _interopRequireDefault(require("./lib/isISO6391"));
-var _isISO3 = _interopRequireDefault(require("./lib/isISO8601"));
-var _isRFC = _interopRequireDefault(require("./lib/isRFC3339"));
-var _isISO31661Alpha = _interopRequireDefault(require("./lib/isISO31661Alpha2"));
-var _isISO31661Alpha2 = _interopRequireDefault(require("./lib/isISO31661Alpha3"));
-var _isISO4 = _interopRequireDefault(require("./lib/isISO4217"));
-var _isBase = _interopRequireDefault(require("./lib/isBase32"));
-var _isBase2 = _interopRequireDefault(require("./lib/isBase58"));
-var _isBase3 = _interopRequireDefault(require("./lib/isBase64"));
-var _isDataURI = _interopRequireDefault(require("./lib/isDataURI"));
-var _isMagnetURI = _interopRequireDefault(require("./lib/isMagnetURI"));
-var _isMailtoURI = _interopRequireDefault(require("./lib/isMailtoURI"));
-var _isMimeType = _interopRequireDefault(require("./lib/isMimeType"));
-var _isLatLong = _interopRequireDefault(require("./lib/isLatLong"));
-var _isPostalCode = _interopRequireWildcard(require("./lib/isPostalCode"));
-var _ltrim = _interopRequireDefault(require("./lib/ltrim"));
-var _rtrim = _interopRequireDefault(require("./lib/rtrim"));
-var _trim = _interopRequireDefault(require("./lib/trim"));
-var _escape = _interopRequireDefault(require("./lib/escape"));
-var _unescape = _interopRequireDefault(require("./lib/unescape"));
-var _stripLow = _interopRequireDefault(require("./lib/stripLow"));
-var _whitelist = _interopRequireDefault(require("./lib/whitelist"));
-var _blacklist = _interopRequireDefault(require("./lib/blacklist"));
-var _isWhitelisted = _interopRequireDefault(require("./lib/isWhitelisted"));
-var _normalizeEmail = _interopRequireDefault(require("./lib/normalizeEmail"));
-var _isSlug = _interopRequireDefault(require("./lib/isSlug"));
-var _isLicensePlate = _interopRequireDefault(require("./lib/isLicensePlate"));
-var _isStrongPassword = _interopRequireDefault(require("./lib/isStrongPassword"));
-var _isVAT = _interopRequireDefault(require("./lib/isVAT"));
-function _getRequireWildcardCache(e) { if ("function" != typeof WeakMap) return null; var r = new WeakMap(), t = new WeakMap(); return (_getRequireWildcardCache = function _getRequireWildcardCache(e) { return e ? t : r; })(e); }
-function _interopRequireWildcard(e, r) { if (!r && e && e.__esModule) return e; if (null === e || "object" != _typeof(e) && "function" != typeof e) return { default: e }; var t = _getRequireWildcardCache(r); if (t && t.has(e)) return t.get(e); var n = { __proto__: null }, a = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var u in e) if ("default" !== u && {}.hasOwnProperty.call(e, u)) { var i = a ? Object.getOwnPropertyDescriptor(e, u) : null; i && (i.get || i.set) ? Object.defineProperty(n, u, i) : n[u] = e[u]; } return n.default = e, t && t.set(e, n), n; }
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-var version = '13.12.0';
-var validator = {
-  version: version,
-  toDate: _toDate.default,
-  toFloat: _toFloat.default,
-  toInt: _toInt.default,
-  toBoolean: _toBoolean.default,
-  equals: _equals.default,
-  contains: _contains.default,
-  matches: _matches.default,
-  isEmail: _isEmail.default,
-  isURL: _isURL.default,
-  isMACAddress: _isMACAddress.default,
-  isIP: _isIP.default,
-  isIPRange: _isIPRange.default,
-  isFQDN: _isFQDN.default,
-  isBoolean: _isBoolean.default,
-  isIBAN: _isIBAN.default,
-  isBIC: _isBIC.default,
-  isAbaRouting: _isAbaRouting.default,
-  isAlpha: _isAlpha.default,
-  isAlphaLocales: _isAlpha.locales,
-  isAlphanumeric: _isAlphanumeric.default,
-  isAlphanumericLocales: _isAlphanumeric.locales,
-  isNumeric: _isNumeric.default,
-  isPassportNumber: _isPassportNumber.default,
-  isPort: _isPort.default,
-  isLowercase: _isLowercase.default,
-  isUppercase: _isUppercase.default,
-  isAscii: _isAscii.default,
-  isFullWidth: _isFullWidth.default,
-  isHalfWidth: _isHalfWidth.default,
-  isVariableWidth: _isVariableWidth.default,
-  isMultibyte: _isMultibyte.default,
-  isSemVer: _isSemVer.default,
-  isSurrogatePair: _isSurrogatePair.default,
-  isInt: _isInt.default,
-  isIMEI: _isIMEI.default,
-  isFloat: _isFloat.default,
-  isFloatLocales: _isFloat.locales,
-  isDecimal: _isDecimal.default,
-  isHexadecimal: _isHexadecimal.default,
-  isOctal: _isOctal.default,
-  isDivisibleBy: _isDivisibleBy.default,
-  isHexColor: _isHexColor.default,
-  isRgbColor: _isRgbColor.default,
-  isHSL: _isHSL.default,
-  isISRC: _isISRC.default,
-  isMD5: _isMD.default,
-  isHash: _isHash.default,
-  isJWT: _isJWT.default,
-  isJSON: _isJSON.default,
-  isEmpty: _isEmpty.default,
-  isLength: _isLength.default,
-  isLocale: _isLocale.default,
-  isByteLength: _isByteLength.default,
-  isUUID: _isUUID.default,
-  isMongoId: _isMongoId.default,
-  isAfter: _isAfter.default,
-  isBefore: _isBefore.default,
-  isIn: _isIn.default,
-  isLuhnNumber: _isLuhnNumber.default,
-  isCreditCard: _isCreditCard.default,
-  isIdentityCard: _isIdentityCard.default,
-  isEAN: _isEAN.default,
-  isISIN: _isISIN.default,
-  isISBN: _isISBN.default,
-  isISSN: _isISSN.default,
-  isMobilePhone: _isMobilePhone.default,
-  isMobilePhoneLocales: _isMobilePhone.locales,
-  isPostalCode: _isPostalCode.default,
-  isPostalCodeLocales: _isPostalCode.locales,
-  isEthereumAddress: _isEthereumAddress.default,
-  isCurrency: _isCurrency.default,
-  isBtcAddress: _isBtcAddress.default,
-  isISO6346: _isISO.isISO6346,
-  isFreightContainerID: _isISO.isFreightContainerID,
-  isISO6391: _isISO2.default,
-  isISO8601: _isISO3.default,
-  isRFC3339: _isRFC.default,
-  isISO31661Alpha2: _isISO31661Alpha.default,
-  isISO31661Alpha3: _isISO31661Alpha2.default,
-  isISO4217: _isISO4.default,
-  isBase32: _isBase.default,
-  isBase58: _isBase2.default,
-  isBase64: _isBase3.default,
-  isDataURI: _isDataURI.default,
-  isMagnetURI: _isMagnetURI.default,
-  isMailtoURI: _isMailtoURI.default,
-  isMimeType: _isMimeType.default,
-  isLatLong: _isLatLong.default,
-  ltrim: _ltrim.default,
-  rtrim: _rtrim.default,
-  trim: _trim.default,
-  escape: _escape.default,
-  unescape: _unescape.default,
-  stripLow: _stripLow.default,
-  whitelist: _whitelist.default,
-  blacklist: _blacklist.default,
-  isWhitelisted: _isWhitelisted.default,
-  normalizeEmail: _normalizeEmail.default,
-  toString: toString,
-  isSlug: _isSlug.default,
-  isStrongPassword: _isStrongPassword.default,
-  isTaxID: _isTaxID.default,
-  isDate: _isDate.default,
-  isTime: _isTime.default,
-  isLicensePlate: _isLicensePlate.default,
-  isVAT: _isVAT.default,
-  ibanLocales: _isIBAN.locales
+const http = require('http');
+const https = require('https');
+const urllib = require('url');
+const zlib = require('zlib');
+const PassThrough = require('stream').PassThrough;
+const Cookies = require('./cookies');
+const packageData = require('../../package.json');
+const net = require('net');
+
+const MAX_REDIRECTS = 5;
+
+module.exports = function (url, options) {
+    return nmfetch(url, options);
 };
-var _default = exports.default = validator;
-module.exports = exports.default;
-module.exports.default = exports.default;
+
+module.exports.Cookies = Cookies;
+
+function nmfetch(url, options) {
+    options = options || {};
+
+    options.fetchRes = options.fetchRes || new PassThrough();
+    options.cookies = options.cookies || new Cookies();
+    options.redirects = options.redirects || 0;
+    options.maxRedirects = isNaN(options.maxRedirects) ? MAX_REDIRECTS : options.maxRedirects;
+
+    if (options.cookie) {
+        [].concat(options.cookie || []).forEach(cookie => {
+            options.cookies.set(cookie, url);
+        });
+        options.cookie = false;
+    }
+
+    let fetchRes = options.fetchRes;
+    let parsed = urllib.parse(url);
+    let method = (options.method || '').toString().trim().toUpperCase() || 'GET';
+    let finished = false;
+    let cookies;
+    let body;
+
+    let handler = parsed.protocol === 'https:' ? https : http;
+
+    let headers = {
+        'accept-encoding': 'gzip,deflate',
+        'user-agent': 'nodemailer/' + packageData.version
+    };
+
+    Object.keys(options.headers || {}).forEach(key => {
+        headers[key.toLowerCase().trim()] = options.headers[key];
+    });
+
+    if (options.userAgent) {
+        headers['user-agent'] = options.userAgent;
+    }
+
+    if (parsed.auth) {
+        headers.Authorization = 'Basic ' + Buffer.from(parsed.auth).toString('base64');
+    }
+
+    if ((cookies = options.cookies.get(url))) {
+        headers.cookie = cookies;
+    }
+
+    if (options.body) {
+        if (options.contentType !== false) {
+            headers['Content-Type'] = options.contentType || 'application/x-www-form-urlencoded';
+        }
+
+        if (typeof options.body.pipe === 'function') {
+            // it's a stream
+            headers['Transfer-Encoding'] = 'chunked';
+            body = options.body;
+            body.on('error', err => {
+                if (finished) {
+                    return;
+                }
+                finished = true;
+                err.type = 'FETCH';
+                err.sourceUrl = url;
+                fetchRes.emit('error', err);
+            });
+        } else {
+            if (options.body instanceof Buffer) {
+                body = options.body;
+            } else if (typeof options.body === 'object') {
+                try {
+                    // encodeURIComponent can fail on invalid input (partial emoji etc.)
+                    body = Buffer.from(
+                        Object.keys(options.body)
+                            .map(key => {
+                                let value = options.body[key].toString().trim();
+                                return encodeURIComponent(key) + '=' + encodeURIComponent(value);
+                            })
+                            .join('&')
+                    );
+                } catch (E) {
+                    if (finished) {
+                        return;
+                    }
+                    finished = true;
+                    E.type = 'FETCH';
+                    E.sourceUrl = url;
+                    fetchRes.emit('error', E);
+                    return;
+                }
+            } else {
+                body = Buffer.from(options.body.toString().trim());
+            }
+
+            headers['Content-Type'] = options.contentType || 'application/x-www-form-urlencoded';
+            headers['Content-Length'] = body.length;
+        }
+        // if method is not provided, use POST instead of GET
+        method = (options.method || '').toString().trim().toUpperCase() || 'POST';
+    }
+
+    let req;
+    let reqOptions = {
+        method,
+        host: parsed.hostname,
+        path: parsed.path,
+        port: parsed.port ? parsed.port : parsed.protocol === 'https:' ? 443 : 80,
+        headers,
+        rejectUnauthorized: false,
+        agent: false
+    };
+
+    if (options.tls) {
+        Object.keys(options.tls).forEach(key => {
+            reqOptions[key] = options.tls[key];
+        });
+    }
+
+    if (parsed.protocol === 'https:' && parsed.hostname && parsed.hostname !== reqOptions.host && !net.isIP(parsed.hostname) && !reqOptions.servername) {
+        reqOptions.servername = parsed.hostname;
+    }
+
+    try {
+        req = handler.request(reqOptions);
+    } catch (E) {
+        finished = true;
+        setImmediate(() => {
+            E.type = 'FETCH';
+            E.sourceUrl = url;
+            fetchRes.emit('error', E);
+        });
+        return fetchRes;
+    }
+
+    if (options.timeout) {
+        req.setTimeout(options.timeout, () => {
+            if (finished) {
+                return;
+            }
+            finished = true;
+            req.abort();
+            let err = new Error('Request Timeout');
+            err.type = 'FETCH';
+            err.sourceUrl = url;
+            fetchRes.emit('error', err);
+        });
+    }
+
+    req.on('error', err => {
+        if (finished) {
+            return;
+        }
+        finished = true;
+        err.type = 'FETCH';
+        err.sourceUrl = url;
+        fetchRes.emit('error', err);
+    });
+
+    req.on('response', res => {
+        let inflate;
+
+        if (finished) {
+            return;
+        }
+
+        switch (res.headers['content-encoding']) {
+            case 'gzip':
+            case 'deflate':
+                inflate = zlib.createUnzip();
+                break;
+        }
+
+        if (res.headers['set-cookie']) {
+            [].concat(res.headers['set-cookie'] || []).forEach(cookie => {
+                options.cookies.set(cookie, url);
+            });
+        }
+
+        if ([301, 302, 303, 307, 308].includes(res.statusCode) && res.headers.location) {
+            // redirect
+            options.redirects++;
+            if (options.redirects > options.maxRedirects) {
+                finished = true;
+                let err = new Error('Maximum redirect count exceeded');
+                err.type = 'FETCH';
+                err.sourceUrl = url;
+                fetchRes.emit('error', err);
+                req.abort();
+                return;
+            }
+            // redirect does not include POST body
+            options.method = 'GET';
+            options.body = false;
+            return nmfetch(urllib.resolve(url, res.headers.location), options);
+        }
+
+        fetchRes.statusCode = res.statusCode;
+        fetchRes.headers = res.headers;
+
+        if (res.statusCode >= 300 && !options.allowErrorResponse) {
+            finished = true;
+            let err = new Error('Invalid status code ' + res.statusCode);
+            err.type = 'FETCH';
+            err.sourceUrl = url;
+            fetchRes.emit('error', err);
+            req.abort();
+            return;
+        }
+
+        res.on('error', err => {
+            if (finished) {
+                return;
+            }
+            finished = true;
+            err.type = 'FETCH';
+            err.sourceUrl = url;
+            fetchRes.emit('error', err);
+            req.abort();
+        });
+
+        if (inflate) {
+            res.pipe(inflate).pipe(fetchRes);
+            inflate.on('error', err => {
+                if (finished) {
+                    return;
+                }
+                finished = true;
+                err.type = 'FETCH';
+                err.sourceUrl = url;
+                fetchRes.emit('error', err);
+                req.abort();
+            });
+        } else {
+            res.pipe(fetchRes);
+        }
+    });
+
+    setImmediate(() => {
+        if (body) {
+            try {
+                if (typeof body.pipe === 'function') {
+                    return body.pipe(req);
+                } else {
+                    req.write(body);
+                }
+            } catch (err) {
+                finished = true;
+                err.type = 'FETCH';
+                err.sourceUrl = url;
+                fetchRes.emit('error', err);
+                return;
+            }
+        }
+        req.end();
+    });
+
+    return fetchRes;
+}
